@@ -57,24 +57,7 @@ public class WebSecurity {
         return http.getOrBuild();
     }
 
-    @Bean
-    public SpringTemplateEngine templateEngine(){
 
-        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
-        resolver.setApplicationContext(applicationContext);
-        resolver.setPrefix("classpath:/templates/");
-        resolver.setSuffix(".html");
-        resolver.setTemplateMode(TemplateMode.HTML);
-        resolver.setCharacterEncoding("UTF-8");
-
-        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(resolver);
-        templateEngine.setEnableSpringELCompiler(true);
-
-        // add dialect spring security
-        templateEngine.addDialect(new SpringSecurityDialect());
-        return templateEngine;
-    }
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
