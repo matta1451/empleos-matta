@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.servlet.ViewResolver;
 import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
@@ -59,21 +60,29 @@ public class WebSecurity {
 
     @Bean
     public SpringTemplateEngine templateEngine(){
-
-        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
-        resolver.setApplicationContext(applicationContext);
-        resolver.setPrefix("classpath:/templates/");
-        resolver.setSuffix(".html");
-        resolver.setTemplateMode(TemplateMode.HTML);
-        resolver.setCharacterEncoding("UTF-8");
-
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(resolver);
+        templateEngine.setTemplateResolver(templateResolver());
         templateEngine.setEnableSpringELCompiler(true);
-
         // add dialect spring security
         templateEngine.addDialect(new SpringSecurityDialect());
         return templateEngine;
+    }
+
+    @Bean
+    public ViewResolver thymeleafResolver() {
+        ThymeleafViewResolver ivr = new ThymeleafViewResolver();
+        ivr.setTemplateEngine(templateEngine());
+        ivr.setOrder(0);
+        return ivr;
+    }
+
+    @Bean
+    public SpringResourceTemplateResolver templateResolver() {
+        SpringResourceTemplateResolver srtr = new SpringResourceTemplateResolver();
+        srtr.setApplicationContext(applicationContext);
+        srtr.setPrefix("classpath:/templates/");
+        srtr.setSuffix(".html");
+        return srtr;
     }
     @Bean
     public PasswordEncoder passwordEncoder(){
