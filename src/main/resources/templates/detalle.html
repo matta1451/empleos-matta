@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+
+    <title>EmpleosApp | Detalles de la Oferta de Trabajo</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+</head>
+
+<body>
+
+<header th:replace="/fragment/menu :: header"></header>
+
+<main role="main">
+    <hr>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-3">
+                <img class="rounded mx-auto d-block" th:src="@{/logos/{imagen} (imagen = ${oferta.imagen})}" alt="Generic placeholder image" width="220" height="220">
+            </div>
+            <div class="col-md-9">
+                <div class="card">
+                    <h4 class="card-header">Aplicar para <strong th:text="${oferta.nombre}"></strong></h4>
+                    <div class="card-body">
+                        <h5 class="card-title"><strong>Categoría: </strong> <span th:text="${oferta.categoria.nombre}"></span></h5>
+                        <h6 class="card-title"><strong>Publicado: </strong> <span th:text="${oferta.fecha}"></span></h6>
+                        <h6 class="card-title"><strong>Salario Ofrecido: </strong><span th:text="'$' + ${oferta.salario}"></span></h6>
+                        <p class="card-text" th:text="${oferta.descripcion}"></p>
+                        <div class="card bg-light mb-3" >
+                            <div class="card-body">
+                                <h5 class="card-title">Detalles de la oferta de trabajo</h5>
+                                <p class="card-text" th:utext="${oferta.detalles}"></p>
+                            </div>
+                        </div>
+                        <div sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
+                            <p class="text-muted text-center">Solo los usuarios comunes pueden postular a una vacante.</p>
+                        </div>
+                        <div sec:authorize="!hasAnyAuthority('ADMINISTRADOR')">
+                            <a sec:authorize="isAuthenticated()" class="btn btn-primary" th:href="@{/solicitud/{id} (id = ${oferta.id})}" role="button" title="Quiero aplicar para esta oferta de trabajo.">
+                                <i class="fas fa-file" aria-hidden="true"></i> Quiero aplicar a esta oferta</a>
+                            <a sec:authorize="isAnonymous()" class="btn btn-primary" th:href="@{/users}" role="button" title="Quiero registrarme ya!!!.">
+                                <i class="fas fa-file" aria-hidden="true"></i> Deseo registrarme</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<div th:replace="/fragment/menu :: modal"></div>
+
+<footer class="footer" th:insert="/fragment/pie_pagina :: footer"></footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<footer th:insert="/fragment/pie_pagina :: footer"></footer>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

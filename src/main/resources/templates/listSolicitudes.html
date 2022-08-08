@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+
+  <title>EmpleosApp | Listado de Solicitudes de Empleo</title>
+  <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+  <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+<header th:replace="/fragment/menu :: header"></header>
+
+<main role="main">
+  <hr>
+  <div class="container">
+    <div class="card">
+      <h4 class="card-header"><strong>Listado de Solicitudes de Empleo</strong></h4>
+      <div class="card-body">
+        <div th:if="${solicitudes.isEmpty()}" class="alert alert-info" th:text="'Aún no existen solicitudes para esta aplicación.'"></div>
+        <div th:unless="${solicitudes.isEmpty()}">
+          <div class="alert alert-danger" th:if="${mensaje_error} != null" th:text="${mensaje_error}" role="alert"></div>
+          <table class="table table-hover">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">Categoría</th>
+              <th scope="col">Vacante</th>
+              <th scope="col">Nombre Candidato</th>
+              <th scope="col">Recibida</th>
+              <th scope="col">Operaciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="soli: ${solicitudes}">
+              <td th:text="${soli.vacante.categoria.nombre}"></td>
+              <td th:text="${soli.vacante.nombre}"></td>
+              <td th:Text="${soli.usuario.nombre}"></td>
+              <td th:text="${#dates.format(soli.fecha, 'dd-MM-yyyy')}"></td>
+              <td>
+                <a th:href="@{/lista_solicitudes/eliminar/{id} (id = ${soli.id})}"
+                   onclick="return confirm('¿Está seguro de eliminar esta solicitud?')"
+                   class="btn btn-success btn-sm" role="button" title="Eliminar la solicitud.">
+                  <i class="fas fa-trash" aria-hidden="true"></i>
+                </a>
+                <a th:href="@{/documents/{archivo} (archivo = ${soli.archivo})}" target="_blank" class="btn btn-success btn-sm"
+                   role="button" aria-hidden="true" title="Ver Curriculum Vitae.">
+                  <i class="fas fa-download" aria-hidden="true"></i>
+                </a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<div th:replace="/fragment/menu :: modal"></div>
+<footer th:replace="/fragment/pie_pagina :: footer"></footer>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

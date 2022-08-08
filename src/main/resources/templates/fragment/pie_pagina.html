@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+  <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+  <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+</head>
+<body>
+
+<footer class="footer" th:fragment="footer">
+  <div class="container">
+    <p>
+      &copy; 2022 TecnoApp, Inc. | WebApp Desarrollada con Spring Boot 2.6.7 | Autor: Christopher J. Matta Fernandez | &middot; <a href="#">Privacidad</a>
+      &middot; <a href="#">Términos</a>
+    </p>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
