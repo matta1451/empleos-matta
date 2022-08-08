@@ -73,10 +73,6 @@ public class WebSecurity {
 
         // add dialect spring security
         templateEngine.addDialect(new SpringSecurityDialect());
-
-        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-        viewResolver.setTemplateEngine(templateEngine);
-        viewResolver.setCharacterEncoding("UTF-8");
         return templateEngine;
     }
     @Bean
