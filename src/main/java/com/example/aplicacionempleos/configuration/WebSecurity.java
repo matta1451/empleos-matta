@@ -62,13 +62,13 @@ public class WebSecurity {
 
         SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
         resolver.setApplicationContext(applicationContext);
-        resolver.setPrefix("classpath:/templates/");
+        resolver.setPrefix("templates/");
         resolver.setSuffix(".html");
         resolver.setTemplateMode(TemplateMode.HTML);
         resolver.setCharacterEncoding("UTF-8");
 
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.addTemplateResolver(resolver);
+        templateEngine.setTemplateResolver(resolver);
         templateEngine.setEnableSpringELCompiler(true);
 
         // add dialect spring security
