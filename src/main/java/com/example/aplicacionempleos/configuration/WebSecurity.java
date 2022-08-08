@@ -59,13 +59,8 @@ public class WebSecurity {
     @Bean
     public SpringTemplateEngine templateEngine(){
 
-        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
-        resolver.setApplicationContext(applicationContext);
-        resolver.setPrefix("classpath:/templates/");
-        resolver.setTemplateMode(TemplateMode.HTML);
-
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(resolver);
+
         templateEngine.setEnableSpringELCompiler(true);
 
         // add dialect spring security
