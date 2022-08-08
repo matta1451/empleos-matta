@@ -1,6 +1,7 @@
 package com.example.aplicacionempleos.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -15,11 +16,16 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
+import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.DefaultTemplateResolver;
 
 @EnableWebSecurity
 @Configuration
 public class WebSecurity {
+
+    @Autowired
+    private ApplicationContext applicationContext;
     @Autowired
     private AuthenticationSuccessHandler loginSuccessHandler;
 
@@ -53,8 +59,13 @@ public class WebSecurity {
     @Bean
     public SpringTemplateEngine templateEngine(){
 
+        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
+        resolver.setApplicationContext(applicationContext);
+        resolver.setPrefix("classpath:/templates/");
+        resolver.setTemplateMode(TemplateMode.HTML);
+
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        // templateEngine.setTemplateResolver(new DefaultTemplateResolver());
+        templateEngine.setTemplateResolver(resolver);
         templateEngine.setEnableSpringELCompiler(true);
 
         // add dialect spring security
