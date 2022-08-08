@@ -57,7 +57,7 @@ public class WebSecurity {
         return http.getOrBuild();
     }
 
-    /*@Bean
+    @Bean
     public SpringTemplateEngine templateEngine(){
 
         SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
@@ -68,13 +68,13 @@ public class WebSecurity {
         resolver.setCharacterEncoding("UTF-8");
 
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(resolver);
+        templateEngine.addTemplateResolver(resolver);
         templateEngine.setEnableSpringELCompiler(true);
 
         // add dialect spring security
         templateEngine.addDialect(new SpringSecurityDialect());
         return templateEngine;
-    }*/
+    }
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
