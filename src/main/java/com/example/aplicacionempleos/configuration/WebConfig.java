@@ -35,7 +35,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/error").setViewName("error");
+        registry.addViewController("/error.html").setViewName("error");
     }
 
     @Bean
