@@ -55,23 +55,6 @@ public class WebSecurity {
                 .logoutSuccessUrl("/login?logout=true").clearAuthentication(true).permitAll();
         return http.getOrBuild();
     }
-
-    @Bean
-    public SpringTemplateEngine templateEngine(){
-
-        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
-        resolver.setApplicationContext(applicationContext);
-        resolver.setPrefix("classpath:/templates/");
-        resolver.setTemplateMode(TemplateMode.HTML);
-
-        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(resolver);
-        templateEngine.setEnableSpringELCompiler(true);
-
-        // add dialect spring security
-        templateEngine.addDialect(new SpringSecurityDialect());
-        return templateEngine;
-    }
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
