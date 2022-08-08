@@ -32,25 +32,4 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/logos/**").addResourceLocations("rutasAbsolutas.ResourceImage()");
         registry.addResourceHandler("/documents/**").addResourceLocations(rutasAbsolutas.ResourceDocument());
     }
-
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/templates/error").setViewName("error");
-    }
-
-    @Bean
-    public SpringTemplateEngine templateEngine(){
-
-        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
-        resolver.setApplicationContext(applicationContext);
-        resolver.setTemplateMode(TemplateMode.HTML);
-
-        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(resolver);
-        templateEngine.setEnableSpringELCompiler(true);
-
-        // add dialect spring security
-        templateEngine.addDialect(new SpringSecurityDialect());
-        return templateEngine;
-    }
 }
