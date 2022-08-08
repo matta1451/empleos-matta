@@ -37,7 +37,6 @@ public class WebConfig implements WebMvcConfigurer {
 
         SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
         resolver.setApplicationContext(applicationContext);
-        resolver.setPrefix("classpath:/templates/");
         resolver.setTemplateMode(TemplateMode.HTML);
 
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
