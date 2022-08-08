@@ -14,11 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.web.servlet.ViewResolver;
 import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
-import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.DefaultTemplateResolver;
 
@@ -60,29 +58,19 @@ public class WebSecurity {
 
     @Bean
     public SpringTemplateEngine templateEngine(){
+
+        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
+        resolver.setApplicationContext(applicationContext);
+        resolver.setPrefix("classpath:/templates/");
+        resolver.setTemplateMode(TemplateMode.HTML);
+
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(templateResolver());
+        templateEngine.setTemplateResolver(resolver);
         templateEngine.setEnableSpringELCompiler(true);
+
         // add dialect spring security
         templateEngine.addDialect(new SpringSecurityDialect());
         return templateEngine;
-    }
-
-    @Bean
-    public ViewResolver thymeleafResolver() {
-        ThymeleafViewResolver ivr = new ThymeleafViewResolver();
-        ivr.setTemplateEngine(templateEngine());
-        ivr.setOrder(0);
-        return ivr;
-    }
-
-    @Bean
-    public SpringResourceTemplateResolver templateResolver() {
-        SpringResourceTemplateResolver srtr = new SpringResourceTemplateResolver();
-        srtr.setApplicationContext(applicationContext);
-        srtr.setPrefix("classpath:/templates/");
-        srtr.setSuffix(".html");
-        return srtr;
     }
     @Bean
     public PasswordEncoder passwordEncoder(){
