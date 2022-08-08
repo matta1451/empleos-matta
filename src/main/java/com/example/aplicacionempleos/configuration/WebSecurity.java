@@ -57,12 +57,12 @@ public class WebSecurity {
         return http.getOrBuild();
     }
 
-    @Bean
+    /*@Bean
     public SpringTemplateEngine templateEngine(){
 
         SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
         resolver.setApplicationContext(applicationContext);
-        resolver.setPrefix("/templates/");
+        resolver.setPrefix("classpath:/templates/");
         resolver.setSuffix(".html");
         resolver.setTemplateMode(TemplateMode.HTML);
         resolver.setCharacterEncoding("UTF-8");
@@ -74,7 +74,7 @@ public class WebSecurity {
         // add dialect spring security
         templateEngine.addDialect(new SpringSecurityDialect());
         return templateEngine;
-    }
+    }*/
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
