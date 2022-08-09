@@ -29,7 +29,13 @@ public class WebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         /*Properties properties = new Properties();
         properties.put("spring.servlet.multipart.location", rutasAbsolutas.AbsoluteTemporal() + "\\");*/
-        registry.addResourceHandler("/logos/**").addResourceLocations("rutasAbsolutas.ResourceImage()");
+        registry.addResourceHandler("/logos/**").addResourceLocations(rutasAbsolutas.ResourceImage());
         registry.addResourceHandler("/documents/**").addResourceLocations(rutasAbsolutas.ResourceDocument());
+    }
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("home");
+        registry.addViewController("/home").setViewName("home");
     }
 }
