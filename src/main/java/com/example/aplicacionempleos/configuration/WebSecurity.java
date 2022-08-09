@@ -43,7 +43,8 @@ public class WebSecurity {
                 .anyRequest().authenticated().and().formLogin().loginPage("/login").successHandler(loginSuccessHandler)
                 .failureUrl("/login?error=true").permitAll().and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout=true").clearAuthentication(true).permitAll();
+                .logoutSuccessUrl("/login?logout=true").clearAuthentication(true).permitAll().and()
+                .requiresChannel().requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null).requiresSecure();
         return http.getOrBuild();
     }
     @Bean
