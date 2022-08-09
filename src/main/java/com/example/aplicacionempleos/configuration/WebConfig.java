@@ -19,10 +19,6 @@ import org.thymeleaf.templatemode.TemplateMode;
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 
-
-    @Autowired
-    private ApplicationContext applicationContext;
-
     @Autowired
     private RutasAbsolutas rutasAbsolutas;
     @Override
@@ -37,5 +33,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("home");
         registry.addViewController("/home").setViewName("home");
+        registry.addViewController("/formLogin").setViewName("/login");
+        registry.addViewController("/**").setViewName("/fragment/menu");
     }
 }
