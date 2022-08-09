@@ -24,8 +24,6 @@ import org.thymeleaf.templateresolver.DefaultTemplateResolver;
 @Configuration
 public class WebSecurity {
     @Autowired
-    private ApplicationContext applicationContext;
-    @Autowired
     private AuthenticationSuccessHandler loginSuccessHandler;
 
     @Autowired
