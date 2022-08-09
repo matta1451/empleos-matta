@@ -16,7 +16,7 @@
 
 </head>
 <body>
-<!--header th:replace="/fragment/menu :: header"></header>-->
+<header th:replace="/fragment/menu.html :: header"></header>
 <main role="main">
     <div th:if="${login_error != null}" th:text="${login_error}" class="alert alert-danger"></div>
     <div th:if="${logout_success}" th:text="${logout_success}" class="alert alert-success"></div>
@@ -60,8 +60,8 @@
         </div>
     </div>
 </main>
-<!--<div th:replace="/fragment/menu :: modal"></div>-->
-<!--<footer th:replace="/fragment/pie_pagina :: footer"></footer>-->
+<div th:replace="/fragment/menu.html :: modal"></div>
+<footer th:replace="/fragment/pie_pagina.html :: footer"></footer>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 </body>

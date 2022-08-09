@@ -16,6 +16,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 
 
 @Configuration
+@EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 
     @Autowired
@@ -33,7 +34,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("home");
         registry.addViewController("/home").setViewName("home");
         registry.addViewController("/login").setViewName("formLogin");
-        registry.addViewController("/**").setViewName("templates/fragment/menu");
+        registry.addViewController("/**").setViewName("menu");
     }
 
 
