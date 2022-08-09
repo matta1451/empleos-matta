@@ -59,7 +59,7 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    private ITemplateResolver htmlTemplateResolver() {
+    ITemplateResolver htmlTemplateResolver() {
         SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
         resolver.setApplicationContext(applicationContext);
         resolver.setPrefix("classpath:/templates/");
