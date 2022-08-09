@@ -16,7 +16,6 @@ import org.thymeleaf.templatemode.TemplateMode;
 
 
 @Configuration
-@EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 
     @Autowired
