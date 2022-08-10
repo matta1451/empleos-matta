@@ -27,8 +27,8 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/logos/**").addResourceLocations(rutasAbsolutas.ResourceImage());
         registry.addResourceHandler("/documents/**").addResourceLocations(rutasAbsolutas.ResourceDocument());
         LOG.info("file:\\" + rutasAbsolutas.AbsoluteStaticResources() + "/bootstrap\\");
-        registry.addResourceHandler("/bootstrap/**").addResourceLocations("file:/" + rutasAbsolutas.AbsoluteStaticResources() + "/bootstrap/");
-        registry.addResourceHandler("/tinymce/**").addResourceLocations("file:/" + rutasAbsolutas.AbsoluteStaticResources() + "/tinymce/");
+        registry.addResourceHandler("/bootstrap/**").addResourceLocations("file:\\" + rutasAbsolutas.AbsoluteStaticResources() + "\\bootstrap\\");
+        registry.addResourceHandler("/tinymce/**").addResourceLocations("file:\\" + rutasAbsolutas.AbsoluteStaticResources() + "\\tinymce\\");
     }
 
     @Bean
