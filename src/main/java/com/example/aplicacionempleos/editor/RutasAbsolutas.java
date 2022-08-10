@@ -33,7 +33,7 @@ public class RutasAbsolutas {
         return Paths.get("src/main/resources/static/tmp/").toAbsolutePath().toString();
     }
     public String AbsoluteStaticResources(){
-        return Paths.get(("src\\main\\resources\\static\\")).toAbsolutePath().toString();
+        return Paths.get(("src/main/resources/static/")).toUri().toString();
     }
 
 }
