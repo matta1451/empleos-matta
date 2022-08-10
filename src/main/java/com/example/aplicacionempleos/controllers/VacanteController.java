@@ -7,8 +7,9 @@ import com.example.aplicacionempleos.services.interfaces.ICategoriasService;
 import com.example.aplicacionempleos.services.interfaces.IVacanteService;
 import com.example.aplicacionempleos.util.MessagesError;
 import com.example.aplicacionempleos.util.Utileria;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,6 +31,7 @@ import java.util.List;
 @SessionAttributes("vacante")
 public class VacanteController {
 
+    private static final Logger LOG = LoggerFactory.getLogger(VacanteController.class);
     @Autowired
     private RutasAbsolutas rutasAbsolutas;
     @Autowired
@@ -98,6 +100,7 @@ public class VacanteController {
         }
         if(!multipartFile.isEmpty()) {
             String nombre_archivo = Utileria.saveFile(multipartFile, rutasAbsolutas.AbsoluteImage());
+            LOG.warn(nombre_archivo);
             if (nombre_archivo != null) {
                 vacante.setImagen(nombre_archivo);
             }
