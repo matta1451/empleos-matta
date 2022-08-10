@@ -24,7 +24,7 @@ public class RutasAbsolutas {
         return Paths.get("src/main/resources/static/documents/").toAbsolutePath().toUri().toString();
     }
     public String AbsoluteImage() {
-        return Paths.get("/static/images/").toAbsolutePath().toString();
+        return Paths.get("classpath:/static/images/").toAbsolutePath().toString();
     }
     public String AbsoluteDocument() {
         return Paths.get("src/main/resources/static/documents/").toAbsolutePath().toString();
