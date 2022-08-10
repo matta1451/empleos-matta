@@ -16,14 +16,15 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 public class WebConfig implements WebMvcConfigurer {
     @Autowired
     private RutasAbsolutas rutasAbsolutas;
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         /*Properties properties = new Properties();
         properties.put("spring.servlet.multipart.location", rutasAbsolutas.AbsoluteTemporal() + "\\");*/
         registry.addResourceHandler("/logos/**").addResourceLocations(rutasAbsolutas.ResourceImage());
         registry.addResourceHandler("/documents/**").addResourceLocations(rutasAbsolutas.ResourceDocument());
-        registry.addResourceHandler("/bootstrap/**").addResourceLocations("/bootstrap");
-        registry.addResourceHandler("/tinymce/**").addResourceLocations("/tinymce");
+        registry.addResourceHandler("/bootstrap/**").addResourceLocations(rutasAbsolutas.AbsoluteStaticResources() + "/bootstrap/");
+        registry.addResourceHandler("/tinymce/**").addResourceLocations(rutasAbsolutas.AbsoluteStaticResources() + "/tinymce/");
     }
 
     @Bean

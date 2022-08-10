@@ -32,4 +32,8 @@ public class RutasAbsolutas {
     public String AbsoluteTemporal() {
         return Paths.get("src/main/resources/static/tmp/").toAbsolutePath().toString();
     }
+    public String AbsoluteStaticResources(){
+        return Paths.get(("src/main/resources/static/")).toAbsolutePath().toString();
+    }
+
 }
