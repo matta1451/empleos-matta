@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Aplicación demo de empleos">
     <meta name="author" content="Christopher Matta">
+    <link th:replace="/fragment/menu :: favicon">
 
     <title>EmpleosApp | Aplicación para publicar Ofertas de Trabajo.</title>
     <!-- Bootstrap core CSS -->
@@ -12,7 +13,6 @@
     <!-- Custom styles for this template -->
     <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
     <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
-    <link rel="shortcut icon" th:href="@{/logos/favicon.png}" type="image/x-icon">
 </head>
 <body>
 <header th:replace="/fragment/menu.html :: header"></header>
