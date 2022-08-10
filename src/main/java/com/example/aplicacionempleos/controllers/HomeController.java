@@ -40,7 +40,7 @@ public class HomeController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @GetMapping({"/home", "/"})
+    @RequestMapping(value = {"/home", "/"})
     public String showHome(){
         return "home";
     }
