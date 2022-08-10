@@ -25,10 +25,8 @@ import java.util.List;
 @SessionAttributes("vacante")
 public class SolicitudController {
 
-    //@Value("${error.message}")
-    private String errorMessage = "Ha ocurrido un error al intentar eliminar este registro. La causa de esto podria ser, que este registro \\\n" +
-            "  este vinculado con alguno otro y por ello al intentar eliminarlo, se estaria eliminando todos aquellos que esten \\\n" +
-            "  enlazados a este.";
+    @Value("${errorMessage}")
+    private String errorMessage;
     @Autowired
     private ISolicitudService solicitudService;
     @Autowired
