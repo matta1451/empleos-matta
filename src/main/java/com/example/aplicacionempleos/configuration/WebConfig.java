@@ -26,7 +26,7 @@ public class WebConfig implements WebMvcConfigurer {
         properties.put("spring.servlet.multipart.location", rutasAbsolutas.AbsoluteTemporal() + "\\");*/
         registry.addResourceHandler("/logos/**").addResourceLocations(rutasAbsolutas.ResourceImage());
         registry.addResourceHandler("/documents/**").addResourceLocations(rutasAbsolutas.ResourceDocument());
-        LOG.info("file:\\" + rutasAbsolutas.AbsoluteStaticResources() + "/bootstrap\\");
+        LOG.info(rutasAbsolutas.AbsoluteStaticResources() + "/bootstrap/");
         registry.addResourceHandler("/bootstrap/**").addResourceLocations(rutasAbsolutas.AbsoluteStaticResources() + "/bootstrap/");
         registry.addResourceHandler("/tinymce/**").addResourceLocations(rutasAbsolutas.AbsoluteStaticResources() + "/tinymce/");
     }
