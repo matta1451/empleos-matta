@@ -1,6 +1,8 @@
 package com.example.aplicacionempleos.configuration;
 
 import com.example.aplicacionempleos.editor.RutasAbsolutas;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +16,7 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 @Configuration
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
+    private static final Logger LOG = LoggerFactory.getLogger(WebConfig.class);
     @Autowired
     private RutasAbsolutas rutasAbsolutas;
 
@@ -23,6 +26,7 @@ public class WebConfig implements WebMvcConfigurer {
         properties.put("spring.servlet.multipart.location", rutasAbsolutas.AbsoluteTemporal() + "\\");*/
         registry.addResourceHandler("/logos/**").addResourceLocations(rutasAbsolutas.ResourceImage());
         registry.addResourceHandler("/documents/**").addResourceLocations(rutasAbsolutas.ResourceDocument());
+        LOG.info("file:\\" + rutasAbsolutas.AbsoluteStaticResources() + "/bootstrap\\");
         registry.addResourceHandler("/bootstrap/**").addResourceLocations("file:/" + rutasAbsolutas.AbsoluteStaticResources() + "/bootstrap/");
         registry.addResourceHandler("/tinymce/**").addResourceLocations("file:/" + rutasAbsolutas.AbsoluteStaticResources() + "/tinymce/");
     }
