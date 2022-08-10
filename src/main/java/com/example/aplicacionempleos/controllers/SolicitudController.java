@@ -6,6 +6,7 @@ import com.example.aplicacionempleos.models.entity.Vacante;
 import com.example.aplicacionempleos.services.interfaces.ISolicitudService;
 import com.example.aplicacionempleos.services.interfaces.IUsuariosService;
 import com.example.aplicacionempleos.services.interfaces.IVacanteService;
+import com.example.aplicacionempleos.util.MessagesError;
 import com.example.aplicacionempleos.util.Utileria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,8 +26,6 @@ import java.util.List;
 @SessionAttributes("vacante")
 public class SolicitudController {
 
-    @Value("${errorMessage}")
-    private String errorMessage;
     @Autowired
     private ISolicitudService solicitudService;
     @Autowired
@@ -75,6 +74,7 @@ public class SolicitudController {
             solicitudService.deleteById(id);
             redirectAttributes.addFlashAttribute("solicitud_eliminada", "Solicitud eliminada exitosamente.");
         }catch(Exception e){
+            String errorMessage = MessagesError.ERROR_MESSAGE;
             redirectAttributes.addFlashAttribute("mensaje_error", errorMessage);
         }
         return "redirect:/lista_solicitudes";

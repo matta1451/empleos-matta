@@ -2,6 +2,7 @@ package com.example.aplicacionempleos.controllers;
 
 import com.example.aplicacionempleos.models.entity.Usuario;
 import com.example.aplicacionempleos.services.interfaces.IUsuariosService;
+import com.example.aplicacionempleos.util.MessagesError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -18,9 +19,6 @@ public class UsuariosController {
     @Autowired
     private IUsuariosService usuariosService;
 
-    @Value("${errorMessage}")
-    private String errorMessage;
-
     @GetMapping("/index")
     public String mostrarIndex(Model model) {
         model.addAttribute("usuarios", usuariosService.findAll());
@@ -33,6 +31,7 @@ public class UsuariosController {
             usuariosService.deleteById(id);
             attributes.addFlashAttribute("msg", "Usuario eliminado exitosamente");
         }catch (Exception e){
+            String errorMessage = MessagesError.ERROR_MESSAGE;
             attributes.addFlashAttribute("mensaje_error", errorMessage);
         }
         return "redirect:/usuarios/index";

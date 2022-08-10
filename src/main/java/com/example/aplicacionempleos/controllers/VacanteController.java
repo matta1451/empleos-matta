@@ -5,6 +5,7 @@ import com.example.aplicacionempleos.models.entity.Categoria;
 import com.example.aplicacionempleos.models.entity.Vacante;
 import com.example.aplicacionempleos.services.interfaces.ICategoriasService;
 import com.example.aplicacionempleos.services.interfaces.IVacanteService;
+import com.example.aplicacionempleos.util.MessagesError;
 import com.example.aplicacionempleos.util.Utileria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,9 +36,6 @@ public class VacanteController {
     private IVacanteService vacanteService;
     @Autowired
     private ICategoriasService categoriasService;
-
-    @Value("${errorMessage}")
-    private String errorMessage;
 
     @InitBinder
     public void initBinder(WebDataBinder webDataBinder){
@@ -86,6 +84,7 @@ public class VacanteController {
             vacanteService.deleteById(id);
             redirectAttributes.addFlashAttribute("msg", "La vacante fue eliminada exitosamente.");
         }catch (Exception e){
+            String errorMessage = MessagesError.ERROR_MESSAGE;
             redirectAttributes.addFlashAttribute("mensaje_error", errorMessage);
         }
         return "redirect:/vacantes/index";

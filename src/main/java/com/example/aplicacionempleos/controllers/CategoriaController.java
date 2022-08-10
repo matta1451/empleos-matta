@@ -2,6 +2,7 @@ package com.example.aplicacionempleos.controllers;
 
 import com.example.aplicacionempleos.models.entity.Categoria;
 import com.example.aplicacionempleos.services.interfaces.ICategoriasService;
+import com.example.aplicacionempleos.util.MessagesError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -19,9 +20,6 @@ public class CategoriaController {
 
     @Autowired
     private ICategoriasService categoriasService;
-
-    @Value("${errorMessage}")
-    private String errorMessage;
 
     @GetMapping("/index")
     public String showCategory(Model model, Pageable pageable){
@@ -50,6 +48,7 @@ public class CategoriaController {
             categoriasService.deleteById(id);
             redirectAttributes.addFlashAttribute("msg", "Registro eliminado exitosamente");
         }catch (Exception e){
+            String errorMessage = MessagesError.ERROR_MESSAGE;
             redirectAttributes.addFlashAttribute("mensaje_error", errorMessage);
         }
         return "redirect:/categorias/index";
