@@ -99,7 +99,7 @@ public class VacanteController {
             return "formVacante";
         }
         if(!multipartFile.isEmpty()) {
-            String nombre_archivo = Utileria.saveFile(multipartFile, "/logos/");
+            String nombre_archivo = Utileria.saveFile(multipartFile, rutasAbsolutas.AbsoluteStaticResources() + "/images/");
             LOG.warn(nombre_archivo);
             if (nombre_archivo != null) {
                 vacante.setImagen(nombre_archivo);
